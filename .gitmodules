@@ -1,0 +1,3 @@
+[submodule "sumo/Sumonity"]
+	path = sumo/Sumonity
+	url = git@github.com:TUM-VT/Sumonity.git
