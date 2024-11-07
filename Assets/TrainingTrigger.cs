@@ -14,12 +14,20 @@ public class TrainingTrigger : MonoBehaviour
 
     public float reward = 0;
 
+    /// <summary>
+    /// Used for setting the color if the reward.
+    /// </summary>
+    public static float highestReward, lowestReward;
+
     private void OnDrawGizmos() 
     {
+        if(reward < lowestReward) lowestReward = reward;
+        if(reward > highestReward) highestReward = reward;
+
         if(reward > 0)
-            Gizmos.color = Color.green;
+            Gizmos.color = new Color(0, 1-0.75f*(reward/highestReward), 0, 1);
         else if(reward < 0)
-            Gizmos.color = Color.red;
+            Gizmos.color = new Color(1-0.75f*(reward/lowestReward), 0, 0, 1);
         else
             Gizmos.color = Color.yellow;
         

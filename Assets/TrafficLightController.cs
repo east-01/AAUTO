@@ -31,8 +31,32 @@ public class TrafficLightController : MonoBehaviour
 
             trafficLightState = value;
             SetEmissive(trafficLightState, true);
+
+            // Set trigger reward
+            void SetTriggerRewards(float val) => trainingTriggers.ForEach(trigger => trigger.reward = val);
+
+            switch(value) {
+                case TrafficLightState.RED:
+                    SetTriggerRewards(redReward);
+                    break;
+                case TrafficLightState.YELLOW:
+                    SetTriggerRewards(yellowReward);
+                    break;
+                case TrafficLightState.GREEN:
+                    SetTriggerRewards(greenReward);
+                    break;
+            }
         }
     }
+
+    [SerializeField]
+    private List<TrainingTrigger> trainingTriggers;
+    [SerializeField]
+    private float redReward = -15;
+    [SerializeField]
+    private float yellowReward = -2;
+    [SerializeField]
+    private float greenReward = 5;
 
     private void Awake() 
     {
@@ -48,13 +72,7 @@ public class TrafficLightController : MonoBehaviour
         State = TrafficLightState.RED;
     }
 
-    // TODO: Test code to get traffic lights flashing, should use TrafficIntersection for control
-    private void Update() 
-    {        
-        if(Mathf.Floor(Time.time-Time.deltaTime) != Mathf.Floor(Time.time)) {
-            State = (TrafficLightState)(Mathf.Floor(Time.time)%Enum.GetValues(typeof(TrafficLightState)).Length);
-        }
-    }
+    private void Start() => State = TrafficLightState.RED;
 
     /// <summary>
     /// Set the emissive property for a specific TrafficLightState
