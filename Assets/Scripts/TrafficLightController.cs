@@ -9,6 +9,7 @@ using Unity.VisualScripting;
 /// Controls a single traffic light- purpose built for the specific traffic light prefab that we're
 ///   going to be using. See why it's purpose built in SetEmissive.
 /// </summary>
+[DefaultExecutionOrder(2)]
 public class TrafficLightController : MonoBehaviour
 {
    
@@ -23,14 +24,13 @@ public class TrafficLightController : MonoBehaviour
             if(trafficLightState == value)
                 return;
 
-            // Disable old emission
+            // Update emissive status and light shade status
             foreach(TrafficLightState tls in Enum.GetValues(typeof(TrafficLightState))) {
-                if(tls != value)
-                    SetEmissive(tls, false);
+                SetEmissive(tls, tls == value);
+                transform.GetChild((int)tls).gameObject.SetActive(tls != value);
             }
 
             trafficLightState = value;
-            SetEmissive(trafficLightState, true);
 
             // Set trigger reward
             void SetTriggerRewards(float val) => trainingTriggers.ForEach(trigger => trigger.reward = val);
@@ -71,8 +71,6 @@ public class TrafficLightController : MonoBehaviour
         mpbs = new MaterialPropertyBlock[ren.materials.Length];
         State = TrafficLightState.RED;
     }
-
-    private void Start() => State = TrafficLightState.RED;
 
     /// <summary>
     /// Set the emissive property for a specific TrafficLightState
