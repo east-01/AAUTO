@@ -6,9 +6,6 @@ using UnityEngine.UIElements;
 public class CarController : MonoBehaviour
 {
 
-    private const string HORIZONTAL = "Horizontal";
-    private const string VERTICAL = "Vertical";
-
     private float horizontalInput;
     private float verticalInput;
 
@@ -34,20 +31,17 @@ public class CarController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        GetInput();
         HandleMotor();
         HandelSteering();
         UpdateWheels();
 
     }
-
-    private void GetInput()
+    
+    public void SetInput(float horizontal, float vertical, bool breaking)
     {
-        horizontalInput = Input.GetAxis(HORIZONTAL);
-        verticalInput = Input.GetAxis(VERTICAL);
-
-        isBreaking = Input.GetKey(KeyCode.Space);
-
+        horizontalInput = horizontal;
+        verticalInput = vertical;
+        isBreaking = breaking;
     }
     private void HandleMotor()
     {
