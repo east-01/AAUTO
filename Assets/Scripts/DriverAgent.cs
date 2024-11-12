@@ -12,7 +12,17 @@ public class DriverAgent : Agent
     private const string HORIZONTAL = "Horizontal";
     private const string VERTICAL = "Vertical";
     
+    [SerializeField]
+    private TrainingEnvironment environment;
+    [SerializeField]
+    private List<string> pathPrefixWhitelist;
+    public List<string> PathPrefixWhitelist => pathPrefixWhitelist;
+
     private CarController _carController;
+    /// <summary>
+    /// Directions string to be used by model
+    /// </summary>
+    private string _directions;
 
     private void Awake()
     {
@@ -22,7 +32,10 @@ public class DriverAgent : Agent
     // Used to set spawn location
     public override void OnEpisodeBegin()
     {
-        
+        TrainingPath path = environment.Initialize(this);
+        _directions = path.TravelInstructions;
+
+        Debug.Log($"Picked path \"{path.gameObject.name}\" with directions: \"{_directions}\"");
     }
 
     // Information fed to the agent
@@ -31,8 +44,6 @@ public class DriverAgent : Agent
     {
         sensor.AddObservation(transform.position);
     }
-    
-    
     
     // Actions agent can do
     // REQUIRES: Behavior Parameters -> Actions -> Discrete Branch & Branches = # of actions
@@ -95,17 +106,22 @@ public class DriverAgent : Agent
     // Used to determine the reward for the Agent
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<PositiveReward>(out PositiveReward positiveReward))
-        {
-            AddReward(1f);
-            //EndEpisode();
-        }
+        if(!other.CompareTag("TrainingTrigger"))
+            return;
 
-        if (other.TryGetComponent<NegativeReward>(out NegativeReward negativeReward))
-        {
-            AddReward(-1f);
-            //EndEpisode();
-        }
-        
+        // Get the reward value defined by TrainingTrigger in scene
+        float reward = other.GetComponent<TrainingTrigger>().reward;
+        AddReward(reward);
+
+        // Check if it's a path trigger
+        if(other.transform.parent.TryGetComponent(out TrainingPath path)) {
+            // Disable trigger since we've passed through it
+            other.gameObject.SetActive(false);
+
+            // Check if self is last trigger in path
+            bool isLast = other == other.transform.parent.GetChild(other.transform.parent.childCount-1).gameObject;
+            if(isLast)
+                EndEpisode();
+        }        
     }
 }

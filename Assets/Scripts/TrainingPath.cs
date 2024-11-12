@@ -7,6 +7,7 @@ public class TrainingPath : MonoBehaviour
 
     [SerializeField]
     private List<string> travelInstructions;
+    public string TravelInstructions => string.Join(", ", travelInstructions);
 
     private void OnDrawGizmos() 
     {
