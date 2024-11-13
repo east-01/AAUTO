@@ -595,8 +595,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1418828522 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
   m_PrefabInstance: {fileID: 2321282183808650268}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1585846018
@@ -720,63 +719,53 @@ MonoBehaviour:
 --- !u!1001 &2321282183808650268
 PrefabInstance:
   m_ObjectHideFlags: 0
+<<<<<<< HEAD
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 142726809738410091, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 142726809738410091, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_Name
       value: Free Racing Car Red Variant
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.03
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalPosition.z
       value: 35.86
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d,
-        type: 3}
+    - target: {fileID: 770328748671214289, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -785,6 +774,92 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f794a5333c14c44d9ab5fe2cd32494d, type: 3}
+=======
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711262143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: RayPerceptionSensor
+  m_DetectableTags:
+  - Wall
+  m_RaysPerDirection: 3
+  m_MaxRayDegrees: 70
+  m_SphereCastRadius: 0.5
+  m_RayLength: 20
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ObservationStacks: 1
+  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 1.3
+  m_EndVerticalOffset: 0
+--- !u!114 &1711262146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711262143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 3
+    NumStackedVectorObservations: 2
+    m_ActionSpec:
+      m_NumContinuousActions: 2
+      BranchSizes: 02000000
+    VectorActionSize: 
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 1
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: CarController
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &1711262147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711262143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c968f2e3db3634db2aeb8ef2c65150da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 1200
+--- !u!114 &1711262148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711262143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 1
+  TakeActionsBetweenDecisions: 1
+>>>>>>> mlagents
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
