@@ -86,6 +86,7 @@ public class DriverAgent : Agent
         // Get the reward value defined by TrainingTrigger in scene
         float reward = other.GetComponent<TrainingTrigger>().reward;
         AddReward(reward);
+        if(reward < 0f) EndEpisode();
 
         // Check if it's a path trigger
         if(other.transform.parent.TryGetComponent(out TrainingPath path)) {
