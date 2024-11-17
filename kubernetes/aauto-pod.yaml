@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: aauto-pod
+spec:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: nautilus.io/csu-tide
+            operator: Exists
+  tolerations:
+  - effect: NoSchedule
+    key: nautilus.io/csu-tide
+    operator: Exists
+  containers:
+  - name: aauto
+    image: krkrick/unity-notebook:v0.5
+    command: ["jupyter", "lab"]
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        cpu: 4
+        memory: 16Gi
+      requests:
+        nvidia.com/gpu: 1
+        cpu: 4
+        memory: 16Gi
+    volumeMounts:
+    - name: aauto-pvc
+      mountPath: /home/jovyan
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: aauto-pvc
+    persistentVolumeClaim:
+      claimName: aauto
+  - name: shm
+    emptyDir:
+      medium: Memory

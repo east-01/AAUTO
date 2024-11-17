@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=quay.io/jupyter/pytorch-notebook:x86_64-cuda12-ubuntu-22.04
+ARG BASE_IMAGE=ghcr.io/selkies-project/nvidia-glx-desktop:latest
 
 FROM ${BASE_IMAGE}
 
@@ -9,37 +9,28 @@ WORKDIR /root
 # Install Jupyter Desktop Dependencies
 RUN apt-get -y update \
  && apt-get -y install \
-    dbus-x11 \
-    xfce4 \
-    xfce4-panel \
-    xfce4-session \
-    xfce4-settings \
-    xorg \
-    xubuntu-icon-theme \
-    tigervnc-standalone-server \
-    tigervnc-xorg-extension \
     gnupg \ 
     software-properties-common
 
 # Unity Hub Dependencies
 RUN wget -qO - https://hub.unity3d.com/linux/keys/public | gpg --dearmor | tee /usr/share/keyrings/Unity_Technologies_ApS.gpg
 RUN sh -c 'echo "deb [signed-by=/usr/share/keyrings/Unity_Technologies_ApS.gpg] https://hub.unity3d.com/linux/repos/deb stable main" > /etc/apt/sources.list.d/unityhub.list'
-RUN add-apt-repository ppa:mozillateam/ppa
 
-# Install Unity Hub and Firefox-ESR (Used for Unity Hub authentication)
+# Install Unity Hub
 RUN apt-get -y update \
- && apt-get -y install \
-    unityhub \
-    firefox-esr \
+ && apt-get -y --no-install-recommends install \
+    unityhub || : \
  && apt clean \
- && rm -rf /var/lib/apt/lists/* \
- && fix-permissions "${CONDA_DIR}" \
- && fix-permissions "/home/${NB_USER}"
+ && rm -rf /var/lib/apt/lists/*
 
 # Switch back to notebook user
-USER $NB_USER
-WORKDIR /home/${NB_USER}
+USER ubuntu
+WORKDIR /home/ubuntu
 
-# Install Jupyter Desktop
-RUN mamba install -y -q -c manics websockify
-RUN pip install jupyter-remote-desktop-proxy
+RUN curl -L -O "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-$(uname)-$(uname -m).sh" \
+ && bash Miniforge3-$(uname)-$(uname -m).sh -bf
+
+# Add mlagents env
+COPY mlagents.yaml mlagents.yaml
+RUN /home/ubuntu/miniforge3/bin/mamba env create -f mlagents.yaml || :
+   #  && rm mlagents.yaml
