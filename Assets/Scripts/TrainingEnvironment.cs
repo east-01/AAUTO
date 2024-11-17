@@ -21,6 +21,8 @@ public class TrainingEnvironment : MonoBehaviour
         // Set path to active
         selectedPath.gameObject.SetActive(true);
 
+        selectedPath.Initialize();
+
         // Set car to start of path
         Transform startTransform = selectedPath.transform.GetChild(0);
         agent.transform.SetPositionAndRotation(startTransform.position, startTransform.rotation);

@@ -9,6 +9,13 @@ public class TrainingPath : MonoBehaviour
     private List<string> travelInstructions;
     public string TravelInstructions => string.Join(", ", travelInstructions);
 
+    public void Initialize() 
+    {
+        for(int childIdx = 0; childIdx < transform.childCount; childIdx++) {
+            transform.GetChild(childIdx).gameObject.SetActive(true);
+        }
+    }
+
     private void OnDrawGizmos() 
     {
         if(transform.childCount < 2)
