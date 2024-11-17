@@ -6,6 +6,7 @@ TagManager:
   tags:
   - TrainingTrigger
   - Wall
+  - Curb
   layers:
   - Default
   - TransparentFX
