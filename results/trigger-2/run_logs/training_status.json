@@ -1,0 +1,38 @@
+{
+    "CarController": {
+        "checkpoints": [
+            {
+                "steps": 499949,
+                "file_path": "results/trigger-2/CarController/CarController-499949.onnx",
+                "reward": -0.25,
+                "creation_time": 1731837280.415225,
+                "auxillary_file_paths": [
+                    "results/trigger-2/CarController/CarController-499949.pt"
+                ]
+            },
+            {
+                "steps": 500013,
+                "file_path": "results/trigger-2/CarController/CarController-500013.onnx",
+                "reward": -0.25,
+                "creation_time": 1731837280.6151202,
+                "auxillary_file_paths": [
+                    "results/trigger-2/CarController/CarController-500013.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500013,
+            "file_path": "results/trigger-2/CarController.onnx",
+            "reward": -0.25,
+            "creation_time": 1731837280.6151202,
+            "auxillary_file_paths": [
+                "results/trigger-2/CarController/CarController-500013.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.5.1+cu124"
+    }
+}

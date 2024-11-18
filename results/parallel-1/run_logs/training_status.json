@@ -1,0 +1,29 @@
+{
+    "CarController": {
+        "checkpoints": [
+            {
+                "steps": 19146,
+                "file_path": "results/parallel-1/CarController/CarController-19146.onnx",
+                "reward": 2.6666666666666665,
+                "creation_time": 1731884203.6806154,
+                "auxillary_file_paths": [
+                    "results/parallel-1/CarController/CarController-19146.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 19146,
+            "file_path": "results/parallel-1/CarController.onnx",
+            "reward": 2.6666666666666665,
+            "creation_time": 1731884203.6806154,
+            "auxillary_file_paths": [
+                "results/parallel-1/CarController/CarController-19146.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.30.0",
+        "torch_version": "2.5.1+cu124"
+    }
+}
