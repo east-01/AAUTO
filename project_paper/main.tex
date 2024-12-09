@@ -89,7 +89,8 @@ After attaching the car controller script to the car, we performed multiple moti
 
 With the sensors in place and a working car, we can now use this car and train it in the environment mentioned above.
 
-\subsection{ML Agents Configuration}
+\subsection{ML-Agents}
+\input{mlagents}
 
 \subsection{Traffic Simulation}
 An AV should be able to navigate among other vehicles in traffic. 
@@ -137,8 +138,10 @@ You can see details on our project at: https://github.com/east-01/AAUTO
 Anything related to the environment: Purchased base environment and converted to a training environment including the addition of fully functional traffic lights, customization of roads to increase consistency and match real-world roads more accurately, the addition of triggers with variable rewards to train model, the addition of training paths and path instructions for the model.
 \subsection{Tanishq Patil}
 Building the keyboard-controlled car, integrating the necessary sensors, and developing the car controller script.
+\subsection{Dominic Griffith} Configured and implemented ML-Agents within Unity to create a training environment for autonomous agents. Integrated custom CarController class to allow agents to perform actions. Set up virtual environment (venv) to manage Unity's ML-Agents library with Python-based reinforcement learning workflow.
 \subsection{Kyle Krick}
 Developed the SUMO simulation based on the training environment, investigated the use of Sumonity  for co-simulation with Unity, developed a Docker container for the project to be able to run on the TIDE cluster, and oversaw the model training sessions.
+
 
 \bibliography{references}
 \bibliographystyle{IEEEtran}

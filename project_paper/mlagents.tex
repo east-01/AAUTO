@@ -1,0 +1,12 @@
+ML-Agents is an open-source library that enables games and simulations to serve as environments for training intelligent agents. We used this library and its Python API to train agents using reinforcement learning within a dedicated virtual environment (venv). This allowed the agent to learn through trial and error by adapting its behavior based on positive and negative rewards.
+
+The agent was responsible for collecting information and executing actions based on its behavior. There are 3 behavior types that ML-Agents supports: Communicator, which integrates with the Python API; Inference, a mode utilizing trained Neural Networks; and Heuristic, which is defined by a hard-coded set of rules \cite{mlAgentsOverview2024}. In our project, we used the Communicator type and gave the agent access to a custom CarController class to perform actions such as steering, accelerating, and braking. Then we had it generate observation information through Camera Sensors and Ray Perception Sensors. The Camera Sensors provided visual input, while the Ray Perception Sensors were used to detect distances to nearby objects. These observations were to help the agent identify obstacles and navigate safely.
+
+With the agent set up and behavior defined, the next step was to get the agent started in a training session. This session involved several steps designed to teach the agent how to complete its task. A typical training session followed this sequence:
+\begin{enumerate}
+    \item Initialization: The agent spawns into the environment at the start of each episode. An episode represents a single attempt for the agent to complete its task.
+    \item Interaction: The agent interacts with the environment by collecting observations and choosing actions.
+    \item Feedback: The environment provides feedback through a reward system. The agent received positive rewards for desirable actions and negative rewards for undesirable actions.
+    \item Conclusion: The episode concludes when the agent completes the task, fails, or exceeds a predefined maximum number of steps
+    \item Reset: The environment resets and the agents begin a new episode.
+\end{enumerate}
