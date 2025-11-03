@@ -16,7 +16,7 @@ spec:
       containers:
       - name: xgl
         # Change tag `latest` to Ubuntu versions such as `24.04`, use a persistent tag such as `24.04-20210101010101` to persist a certain container version
-        image: ghcr.io/selkies-project/nvidia-glx-desktop:latest
+        image: krkrick/unity-desktop:v0.1
         env:
         - name: TZ
           value: "UTC"
@@ -95,11 +95,11 @@ spec:
         resources:
           limits:
             memory: 64Gi
-            cpu: 6
+            cpu: 4
             nvidia.com/gpu: 1
           requests:
             memory: 64Gi
-            cpu: 6
+            cpu: 4
             nvidia.com/gpu: 1
         volumeMounts:
         - mountPath: /dev/shm
@@ -122,8 +122,6 @@ spec:
           claimName: aauto
       - name: xgl-cache-vol
         emptyDir: {}
-#        persistentVolumeClaim:
-#          claimName: xgl-cache-vol
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
@@ -131,18 +129,11 @@ spec:
             - matchExpressions:
               - key: nautilus.io/csu-tide
                 operator: Exists
-              # - key: topology.kubernetes.io/zone
-              #   operator: NotIn
-              #   values:
-              #   - ucsd-suncave
-#              - key: topology.kubernetes.io/region
-#                operator: In
-#                values:
-#                - us-west
       tolerations:
       - effect: NoSchedule
-        key: nautilus.io/csu-tide
-        operator: Exists
+        key: nautilus.io/reservation
+        operator: Equal
+        value: csu-tide
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress

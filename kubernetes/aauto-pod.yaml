@@ -12,8 +12,9 @@ spec:
             operator: Exists
   tolerations:
   - effect: NoSchedule
-    key: nautilus.io/csu-tide
-    operator: Exists
+    key: nautilus.io/reservation
+    operator: Equal
+    value: csu-tide
   containers:
   - name: aauto
     image: krkrick/unity-notebook:v0.5
