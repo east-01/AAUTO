@@ -1,0 +1,34 @@
+# =====================================
+#  Unity ML-Agents + PyTorch RL (Python 3.11)
+# =====================================
+
+# --- Core Frameworks ---
+torch==2.2.2                 # Deep learning backbone (GPU/CPU compatible)
+torchvision==0.17.2          # CNNs and image transforms
+numpy==1.23.5                # Keeps np.bool alias (needed for ML-Agents)
+protobuf==3.20.3             # Compatible with Unity ML-Agents proto definitions
+
+# --- Unity ML-Agents Interface ---
+mlagents==0.28.0
+mlagents-envs==0.28.0
+
+# --- Data Handling & Visualization ---
+pandas==2.2.2                # Tabular data + episode logs
+matplotlib==3.8.4            # Plotting and reward curves
+tensorboard==2.16.2          # Real-time metrics visualization
+tqdm==4.66.4                 # Progress bars
+seaborn==0.13.2              # Statistical visualization
+scipy==1.11.4                # Math utilities (filters, smoothing)
+
+# --- Environment / Utilities ---
+opencv-python-headless==4.9.0.80   # Visual obs preprocessing (no GUI)
+gymnasium==0.29.1                  # Optional Gym compatibility layer
+pyyaml==6.0.1                      # Config files (for hyperparameters)
+rich==13.7.1                       # Colored CLI output and tables
+psutil==5.9.8                      # System stats (monitor GPU/CPU/mem)
+tensorboardX==2.6.2                # Alternate TB logging interface
+
+# --- Optional / Developer Tools ---
+# ray[rllib]==2.9.3                # Parallel RL (multi-environment training)
+# wandb==0.17.0                    # Cloud experiment tracking
+# jupyterlab>=4.1.0                # If you want notebooks
