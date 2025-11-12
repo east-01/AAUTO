@@ -38,6 +38,7 @@ public class DriverAgent : Agent
         Debug.Log($"Picked path \"{path.gameObject.name}\" with directions: \"{_directions}\"");
     }
 
+#region Data In/Out
     // Information fed to the agent
     // REQUIRES: Behavior Parameters -> Vector Observation -> Space Size = # of observations fed to agent
     public override void CollectObservations(VectorSensor sensor)
@@ -73,35 +74,36 @@ public class DriverAgent : Agent
         discreteActions[0] = boolAction;
         
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxis(HORIZONTAL);;
+        continuousActions[0] = Input.GetAxis(HORIZONTAL);
         continuousActions[1] = Input.GetAxis(VERTICAL);
     }
+#endregion
 
     // Used to determine the reward for the Agent
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Curb"))
-        {
+        if(other.CompareTag("Curb")) {
             EndEpisode();
-            return;
-        }
-        if(!other.CompareTag("TrainingTrigger"))
-            return;
+        } else if(other.CompareTag("TrainingTrigger") && other.TryGetComponent(out TrainingTrigger trigger)) {
+            HandleTrainingTrigger(trigger);
+        }          
+    }
 
+    private void HandleTrainingTrigger(TrainingTrigger trigger)
+    {
         // Get the reward value defined by TrainingTrigger in scene
-        float reward = other.GetComponent<TrainingTrigger>().reward;
+        float reward = trigger.reward;
         AddReward(reward);
-        // if(reward < 0f) EndEpisode();
 
         // Check if it's a path trigger
-        if(other.transform.parent.TryGetComponent(out TrainingPath path)) {
+        if(trigger.transform.parent.TryGetComponent(out TrainingPath path)) {
             // Disable trigger since we've passed through it
-            other.gameObject.SetActive(false);
+            trigger.gameObject.SetActive(false);
 
             // Check if self is last trigger in path
-            bool isLast = other == other.transform.parent.GetChild(other.transform.parent.childCount-1).gameObject;
+            bool isLast = trigger == trigger.transform.parent.GetChild(trigger.transform.parent.childCount-1).gameObject;
             if(isLast)
                 EndEpisode();
-        }        
+        }      
     }
 }

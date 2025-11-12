@@ -43,6 +43,7 @@ public class CarController : MonoBehaviour
         verticalInput = vertical;
         isBreaking = breaking;
     }
+    
     private void HandleMotor()
     {
         frontLeftWheelCollider.motorTorque = verticalInput * motorForce;
