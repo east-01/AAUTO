@@ -4,6 +4,9 @@ import traceback
 
 from agent import Agent_AAUTTO
 
+import mlagents_envs
+print(mlagents_envs.__version__)
+
 def parse():
     parser = argparse.ArgumentParser(description="CS654 RL Project3")
     parser.add_argument('--env_name', default=None, help='environment name')
@@ -22,7 +25,7 @@ def parse():
 args = parse()
 
 print("Waiting for Unity...")
-unity_env = UnityEnvironment(file_name=None, no_graphics=True)
+unity_env = UnityEnvironment(file_name=None)
 print("Connected.")
 
 try:
@@ -35,5 +38,10 @@ except Exception as e:
     print(f"Training exception: {e}")
     unity_env.close()
     traceback.print_exc()
+
+try:
+    unity_env.close()
+except:
+    pass
 
 print(f"Finished")

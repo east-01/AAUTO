@@ -83,11 +83,14 @@ class Agent_AAUTTO():
 
 		# How ChatGPT showed me to unpack it. We'll prolly have to figure out the right way to do
 		#   it once we understand our sensors better.		
-		# n_agents = len(decision_steps)
-		# for agent_idx in range(n_agents):
-		# 	obs_per_agent = [obs[agent_idx] for obs in decision_steps.obs]
-		# 	reward = decision_steps.reward[agent_idx]
-		# 	agent_id = decision_steps.agent_id[agent_idx]
+		n_agents = len(decision_steps)
+		for agent_idx in range(n_agents):
+			obs_per_agent = [obs[agent_idx] for obs in decision_steps.obs]
+			reward = decision_steps.reward[agent_idx]
+			agent_id = decision_steps.agent_id[agent_idx]
+
+			for obs in obs_per_agent:
+				print("Observed:", obs)
 
 		n_agents = len(decision_steps)
 		action_size = spec.action_spec.continuous_size
@@ -131,20 +134,19 @@ class Agent_AAUTTO():
 			  the ball drops. """
 
 		env: UnityEnvironment = self.env
+		env.reset()
 
 		if(len(env.behavior_specs) == 0):
-			print("No behaviour spec. Skipping.")
-			return
+			raise Exception(f"No behaviour specs found.")
 		
 		behavior_name = list(env.behavior_specs)[0]
 
-		env.reset()
+		if(behavior_name != "CarController?team=0"):
+			raise Exception(f"Found unexpected behaviour named: {behavior_name}")
 
 		self.init_game_setting()
 
 		for i in range(int(1e10)):
-			print(f"Step: {self.step_number}")
-
 			decision_steps, terminal_steps = env.get_steps(behavior_name)
 
 			action_tuple = self.make_action(decision_steps, test=False)

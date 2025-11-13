@@ -1,7 +1,3 @@
-# =====================================
-#  Unity ML-Agents + PyTorch RL (Python 3.11)
-# =====================================
-
 # --- Core Frameworks ---
 torch==2.2.2                 # Deep learning backbone (GPU/CPU compatible)
 torchvision==0.17.2          # CNNs and image transforms
@@ -9,8 +5,8 @@ numpy==1.23.5                # Keeps np.bool alias (needed for ML-Agents)
 protobuf==3.20.3             # Compatible with Unity ML-Agents proto definitions
 
 # --- Unity ML-Agents Interface ---
-mlagents==0.28.0
-mlagents-envs==0.28.0
+mlagents==0.26.0
+mlagents-envs==0.26.0
 
 # --- Data Handling & Visualization ---
 pandas==2.2.2                # Tabular data + episode logs

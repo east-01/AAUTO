@@ -47,7 +47,7 @@ public class DriverAgent : Agent
     }
     
     // Actions agent can do
-    // REQUIRES: Behavior Parameters -> Actions -> Discrete/Continuous Branch = # Discrete/Continuous actions
+    // REQUIRES: Behavior Parameters -> Actions -> Discrete/Continuous nch = # Discrete/Continuous actions
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         float forwardAmount = actionBuffers.ContinuousActions[0];
