@@ -49,15 +49,9 @@ public class DriverAgent : Agent
     // REQUIRES: Behavior Parameters -> Actions -> Discrete/Continuous Branch = # Discrete/Continuous actions
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        float forwardAmount = actionBuffers.ContinuousActions[0];
-        float turnAmount = actionBuffers.ContinuousActions[1];
-        bool breakAmount = false;
-        
-        switch (actionBuffers.DiscreteActions[0])
-        {
-            case 0: breakAmount = false; break; //nothing
-            case 1: breakAmount = true; break; //break
-        }
+        float forwardAmount = Mathf.Clamp(actionBuffers.ContinuousActions[0], -1f, 1f);
+        float turnAmount = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
+        bool breakAmount = actionBuffers.DiscreteActions[0] == 1;
         
         _carController.SetInput(forwardAmount, turnAmount, breakAmount);
     }
