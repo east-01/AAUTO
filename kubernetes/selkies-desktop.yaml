@@ -16,7 +16,7 @@ spec:
       containers:
       - name: xgl
         # Change tag `latest` to Ubuntu versions such as `24.04`, use a persistent tag such as `24.04-20210101010101` to persist a certain container version
-        image: krkrick/unity-desktop:v0.1
+        image: krkrick/unity-desktop:v0.2
         env:
         - name: TZ
           value: "UTC"
