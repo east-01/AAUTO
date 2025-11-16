@@ -23,6 +23,8 @@ RUN apt-get -y update \
  && apt clean \
  && rm -rf /var/lib/apt/lists/*
 
+RUN curl -fsSL https://code-server.dev/install.sh | sh
+
 # Switch back to notebook user
 USER ubuntu
 WORKDIR /home/ubuntu
