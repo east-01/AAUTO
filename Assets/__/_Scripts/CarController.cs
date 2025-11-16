@@ -65,7 +65,7 @@ public class CarController : MonoBehaviour
     // Rrevent Fishtailing
     private void ApplySteeringStabilizer()
     {
-        Vector3 flatVelocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        Vector3 flatVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         Vector3 forward = new Vector3(transform.forward.x, 0, transform.forward.z);
 
         float angle = Vector3.SignedAngle(flatVelocity, forward, Vector3.up);
@@ -92,7 +92,7 @@ public class CarController : MonoBehaviour
     // Display Speed in MPH
     private void PrintMPH()
     {
-        float speed = rb.velocity.magnitude;
+        float speed = rb.linearVelocity.magnitude;
         currentCarSpeedMPH = speed * 2.23694f;
         if (textMPH != null)
         {
@@ -111,7 +111,7 @@ public class CarController : MonoBehaviour
         {
             currentThrottle = Mathf.MoveTowards(currentThrottle, verticalInput, throttleAcceleration * Time.fixedDeltaTime);
         }
-        else if (verticalInput < 0f && Mathf.Abs(Vector3.Dot(rb.velocity, transform.forward)) < 1.5f)
+        else if (verticalInput < 0f && Mathf.Abs(Vector3.Dot(rb.linearVelocity, transform.forward)) < 1.5f)
         {
             currentThrottle = Mathf.MoveTowards(currentThrottle, verticalInput, throttleDeceleration * Time.fixedDeltaTime);
         }
