@@ -1,7 +1,10 @@
+# Python Sensor Pod
 apiVersion: v1
 kind: Pod
 metadata:
   name: aauto-pod
+  labels:
+    app: python-sensor
 spec:
   affinity:
     nodeAffinity:
@@ -18,6 +21,9 @@ spec:
   containers:
   - name: aauto
     image: krkrick/unity-notebook:v0.5
+    ports:
+    - containerPort: 5005
+      protocol: TCP
     command: ["jupyter", "lab"]
     resources:
       limits:
@@ -40,3 +46,16 @@ spec:
   - name: shm
     emptyDir:
       medium: Memory
+
+# Unity Sensor Data
+apiVersion: v1
+kind: Service
+metadata:
+  name: python-sensor
+spec:
+  selector:
+    app: python-sensor
+  ports:
+    - protocol: TCP
+      port: 5005
+      targetPort: 5005
