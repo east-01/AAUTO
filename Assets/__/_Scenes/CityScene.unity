@@ -508,7 +508,7 @@ MonoBehaviour:
   cameraRightFront: {fileID: 1392952998}
   camWidth: 1920
   camHeight: 1080
-  pythonIP: 127.0.0.1
+  pythonIP: python-sensor
   pythonPort: 5005
 --- !u!1001 &2262865127303792662
 PrefabInstance:
