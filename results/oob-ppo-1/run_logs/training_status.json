@@ -1,0 +1,29 @@
+{
+    "CarController": {
+        "checkpoints": [
+            {
+                "steps": 15040,
+                "file_path": "results/oob-ppo-1/CarController/CarController-15040.onnx",
+                "reward": 0.0,
+                "creation_time": 1763354852.4708114,
+                "auxillary_file_paths": [
+                    "results/oob-ppo-1/CarController/CarController-15040.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 15040,
+            "file_path": "results/oob-ppo-1/CarController.onnx",
+            "reward": 0.0,
+            "creation_time": 1763354852.4708114,
+            "auxillary_file_paths": [
+                "results/oob-ppo-1/CarController/CarController-15040.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.8.0"
+    }
+}
