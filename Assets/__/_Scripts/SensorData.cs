@@ -4,25 +4,36 @@ using System.Net.Sockets;
 using Unity.MLAgents.Sensors;
 using System.IO;
 
+
+// Requires a Python server to be running to send the data
 public class SensorData : MonoBehaviour
 {
-    [SerializeField] Camera cameraCenterFront;
-    [SerializeField] Camera cameraLeftFront;
-    [SerializeField] Camera cameraRightFront;
-    [SerializeField] RayPerceptionSensor raySensorTop;
+    [Header("Camera Setup")]
+    [SerializeField] Camera cameraFront;
+    [SerializeField] Camera cameraFrontLeft;
+    [SerializeField] Camera cameraFrontRight;
+    [SerializeField] Camera cameraSideLeft;
+    [SerializeField] Camera cameraSideRight;
+
+    [Header("Camera Resolution")]
     [SerializeField] int camWidth = 1920;
     [SerializeField] int camHeight = 1080;
 
+    [Header("Ray Sensor Setup")]
+    [SerializeField] RayPerceptionSensor raySensorTop;
 
-    public string pythonIP = "python-sensor";
-    public int pythonPort = 5005;
+    [Header("Python Server Connection")]
+    [SerializeField] public string pythonIP = "127.0.0.1";// For local use "127.0.0.1"; For cluster use "python-sensor"?
+    [SerializeField] public int pythonPort = 5005;
 
     private TcpClient client;
     private NetworkStream stream;
 
     private Texture2D texFront;
-    private Texture2D texLeft;
-    private Texture2D texRight;
+    private Texture2D texFrontLeft;
+    private Texture2D texFrontRight;
+    private Texture2D texSideLeft;
+    private Texture2D texSideRight;
 
     void Start()
     {
@@ -30,23 +41,28 @@ public class SensorData : MonoBehaviour
         {
             client = new TcpClient(pythonIP, pythonPort);
             stream = client.GetStream();
+            Debug.Log($"Successfully connected to Python server at {pythonIP}:{pythonPort}");
         }
         catch (Exception e)
         {
             Debug.LogError($"Failed to connect to Python server: {e}");
         }
 
-        SetupCamera(cameraCenterFront, ref texFront);
-        SetupCamera(cameraLeftFront, ref texLeft);
-        SetupCamera(cameraRightFront, ref texRight);
+        SetupCamera(cameraFront, ref texFront);
+        SetupCamera(cameraFrontLeft, ref texFrontLeft);
+        SetupCamera(cameraFrontRight, ref texFrontRight);
+        SetupCamera(cameraSideLeft, ref texSideLeft);
+        SetupCamera(cameraSideRight, ref texSideRight);
     }
 
     void LateUpdate()
     {
         // Capture and send cameras
-        SendCamera(cameraCenterFront, texFront);
-        SendCamera(cameraLeftFront, texLeft);
-        SendCamera(cameraRightFront, texRight);
+        SendCamera(cameraFront, texFront);
+        SendCamera(cameraFrontLeft, texFrontLeft);
+        SendCamera(cameraFrontRight, texFrontRight);
+        SendCamera(cameraSideLeft, texSideLeft);
+        SendCamera(cameraSideRight, texSideRight);
 
         // Capture and send RayPerceptionSensor
         //SendRaySensor(raySensorTop);
@@ -60,6 +76,15 @@ public class SensorData : MonoBehaviour
 
     void SendCamera(Camera cam, Texture2D tex)
     {
+        if (cam == null)
+        {
+            Debug.LogWarning("Camera is null");
+        }
+        if (tex == null)
+        {
+            Debug.LogWarning("Texture is null");
+        }
+
         // Render camera to texture
         RenderTexture.active = cam.targetTexture;
         tex.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);

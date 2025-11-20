@@ -4,7 +4,7 @@ import torch
 
 HOST = '0.0.0.0'
 PORT = 5005
-Height, Width = 1080, 1920
+Width, Height = 1920, 1080
 
 # Setup Server
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -56,4 +56,5 @@ while True:
         "right": right,
     }
 
+    # [Use] Sensor Data here
     print({k: v.shape for k,v in obs.items()})
