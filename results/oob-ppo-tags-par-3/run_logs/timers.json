@@ -1,0 +1,54 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1763692017",
+        "python_version": "3.10.12 | packaged by conda-forge | (main, Jun 23 2023, 22:40:32) [GCC 12.3.0]",
+        "command_line_arguments": "/home/xelyk/miniforge3/envs/mlagents-env-gpu/bin/mlagents-learn --run-id oob-ppo-tags-par-3 --resume",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.5.1",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1763692025"
+    },
+    "total": 8.160755877004704,
+    "count": 1,
+    "self": 0.004835190993617289,
+    "children": {
+        "run_training.setup": {
+            "total": 0.012634547005291097,
+            "count": 1,
+            "self": 0.012634547005291097
+        },
+        "TrainerController.start_learning": {
+            "total": 8.143286139005795,
+            "count": 1,
+            "self": 7.858300523366779e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 7.800849582999945,
+                    "count": 1,
+                    "self": 7.800849582999945
+                },
+                "trainer_threads": {
+                    "total": 5.970068741589785e-07,
+                    "count": 1,
+                    "self": 5.970068741589785e-07
+                },
+                "TrainerController._save_models": {
+                    "total": 0.3423573759937426,
+                    "count": 1,
+                    "self": 0.005826714987051673,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.33653066100669093,
+                            "count": 1,
+                            "self": 0.33653066100669093
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

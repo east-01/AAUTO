@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MajorLaneDeviation
       objectReference: {fileID: 0}
+    - target: {fileID: 8991310488913961899, guid: eda1a91a8f0c631469082003b77b2142, type: 3}
+      propertyPath: m_TagString
+      value: Lane
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
