@@ -612,7 +612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[1]'
@@ -621,6 +621,10 @@ PrefabInstance:
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[2]'
       value: TrainingTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[3]'
+      value: Lane
       objectReference: {fileID: 0}
     - target: {fileID: 6526987087750906382, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_Enabled
@@ -964,7 +968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[1]'
@@ -973,6 +977,10 @@ PrefabInstance:
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[2]'
       value: TrainingTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[3]'
+      value: Lane
       objectReference: {fileID: 0}
     - target: {fileID: 6526987087750906382, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_Enabled
@@ -1062,7 +1070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[1]'
@@ -1071,6 +1079,10 @@ PrefabInstance:
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[2]'
       value: TrainingTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[3]'
+      value: Lane
       objectReference: {fileID: 0}
     - target: {fileID: 6526987087750906382, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_Enabled
@@ -1097,7 +1109,7 @@ PrefabInstance:
     - target: {fileID: 137572702165462519, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 22274247bbedbdcc9a9815e3be41c298, type: 3}
+      objectReference: {fileID: 5022602860645237092, guid: 29e24a99c1fe36a349f825459df89517, type: 3}
     - target: {fileID: 137572702165462519, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_InferenceDevice
       value: 0
@@ -1112,7 +1124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3239038700355613049, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: MaxStep
-      value: 12000
+      value: 50000
       objectReference: {fileID: 0}
     - target: {fileID: 3239038700355613049, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: environment
@@ -1172,7 +1184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[1]'
@@ -1181,6 +1193,10 @@ PrefabInstance:
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[2]'
       value: TrainingTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[3]'
+      value: Lane
       objectReference: {fileID: 0}
     - target: {fileID: 6480321907652466867, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_TagString
@@ -1310,7 +1326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7823002296588327384, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.0747967
+      value: -7.0747986
       objectReference: {fileID: 0}
     - target: {fileID: 7823002296588327384, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1318,15 +1334,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7823002296588327384, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7823002296588327384, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7823002296588327384, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 7823002296588327384, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1451,7 +1467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_DetectableTags.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[1]'
@@ -1460,6 +1476,10 @@ PrefabInstance:
     - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: 'm_DetectableTags.Array.data[2]'
       value: TrainingTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
+      propertyPath: 'm_DetectableTags.Array.data[3]'
+      value: Lane
       objectReference: {fileID: 0}
     - target: {fileID: 6526987087750906382, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_Enabled
