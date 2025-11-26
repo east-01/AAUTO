@@ -50,6 +50,10 @@ public class DriverAgent : Agent
     // REQUIRES: Behavior Parameters -> Actions -> Discrete/Continuous nch = # Discrete/Continuous actions
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
+        // Persistent negative reward over time
+        float reward = -0.00025;
+        AddReward(reward);
+
         float forwardAmount = Mathf.Clamp(actionBuffers.ContinuousActions[0], -1f, 1f);
         float turnAmount = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
         bool breakAmount = actionBuffers.DiscreteActions[0] == 1;
@@ -78,7 +82,7 @@ public class DriverAgent : Agent
     {
         if(other.CompareTag("Curb")) {
             EndEpisode();
-        } else if(other.CompareTag("TrainingTrigger") && other.TryGetComponent(out TrainingTrigger trigger)) {
+        } else if((other.CompareTag("TrainingTrigger") || other.CompareTag("Lane")) && other.TryGetComponent(out TrainingTrigger trigger)) {
             HandleTrainingTrigger(trigger);
         }          
     }
