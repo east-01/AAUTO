@@ -1,0 +1,38 @@
+{
+    "CarController": {
+        "checkpoints": [
+            {
+                "steps": 499944,
+                "file_path": "results/tide-tags-norm-3/CarController/CarController-499944.onnx",
+                "reward": null,
+                "creation_time": 1764220507.9252403,
+                "auxillary_file_paths": [
+                    "results/tide-tags-norm-3/CarController/CarController-499944.pt"
+                ]
+            },
+            {
+                "steps": 500008,
+                "file_path": "results/tide-tags-norm-3/CarController/CarController-500008.onnx",
+                "reward": null,
+                "creation_time": 1764220508.069737,
+                "auxillary_file_paths": [
+                    "results/tide-tags-norm-3/CarController/CarController-500008.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500008,
+            "file_path": "results/tide-tags-norm-3/CarController.onnx",
+            "reward": null,
+            "creation_time": 1764220508.069737,
+            "auxillary_file_paths": [
+                "results/tide-tags-norm-3/CarController/CarController-500008.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1"
+    }
+}

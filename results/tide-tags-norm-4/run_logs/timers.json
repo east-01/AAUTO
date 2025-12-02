@@ -1,0 +1,54 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1764351653",
+        "python_version": "3.10.12 | packaged by conda-forge | (main, Jun 23 2023, 22:40:32) [GCC 12.3.0]",
+        "command_line_arguments": "/home/ubuntu/miniforge3/envs/mlagents-env/bin/mlagents-learn --run-id tide-tags-norm-4 --resume",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.5.1",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1764351669"
+    },
+    "total": 15.495360052911565,
+    "count": 1,
+    "self": 0.0072378539480268955,
+    "children": {
+        "run_training.setup": {
+            "total": 0.016536982962861657,
+            "count": 1,
+            "self": 0.016536982962861657
+        },
+        "TrainerController.start_learning": {
+            "total": 15.471585216000676,
+            "count": 1,
+            "self": 9.58428718149662e-05,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 14.938266969053075,
+                    "count": 1,
+                    "self": 14.938266969053075
+                },
+                "trainer_threads": {
+                    "total": 1.0649673640727997e-06,
+                    "count": 1,
+                    "self": 1.0649673640727997e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 0.5332213391084224,
+                    "count": 1,
+                    "self": 0.0021267340052872896,
+                    "children": {
+                        "RLTrainer._checkpoint": {
+                            "total": 0.5310946051031351,
+                            "count": 1,
+                            "self": 0.5310946051031351
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

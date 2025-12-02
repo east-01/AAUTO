@@ -617,7 +617,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 50000
+  MaxStep: 25000
   environment: {fileID: 0}
   pathPrefixWhitelist: []
 --- !u!114 &137572702165462519

@@ -51,7 +51,7 @@ public class DriverAgent : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         // Persistent negative reward over time
-        float reward = -0.001f;
+        float reward = -0.1f;
         AddReward(reward);
 
         float forwardAmount = Mathf.Clamp(actionBuffers.ContinuousActions[0], -1f, 1f);
