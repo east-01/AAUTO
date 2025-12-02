@@ -16,6 +16,15 @@ public class TrainingPath : MonoBehaviour
         }
     }
 
+    public void DeInitialize() 
+    {
+        for(int childIdx = 0; childIdx < transform.childCount; childIdx++) {
+            transform.GetChild(childIdx).gameObject.SetActive(true);
+        }
+
+        gameObject.SetActive(false);
+    }
+
     private void OnDrawGizmos() 
     {
         if(transform.childCount < 2)

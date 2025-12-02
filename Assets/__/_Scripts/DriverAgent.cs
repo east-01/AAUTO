@@ -29,13 +29,21 @@ public class DriverAgent : Agent
         _carController = GetComponent<CarController>();
     }
 
+    private TrainingPath selectedPath;
+
     // Used to set spawn location
     public override void OnEpisodeBegin()
     {
-        TrainingPath path = environment.Initialize(this);
-        _directions = path.TravelInstructions;
+        selectedPath = environment.Initialize(this);
+        _directions = selectedPath.TravelInstructions;
 
-        Debug.Log($"Picked path \"{path.gameObject.name}\" with directions: \"{_directions}\"");
+        Debug.Log($"Picked path \"{selectedPath.gameObject.name}\" with directions: \"{_directions}\"");
+    }
+
+    private void FinishEpisode()
+    {
+        // selectedPath.DeInitialize();
+        EndEpisode();        
     }
 
 #region Data In/Out
@@ -77,7 +85,7 @@ public class DriverAgent : Agent
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Curb")) {
-            EndEpisode();
+            FinishEpisode();
         } else if(other.CompareTag("TrainingTrigger") && other.TryGetComponent(out TrainingTrigger trigger)) {
             HandleTrainingTrigger(trigger);
         }          
@@ -97,7 +105,7 @@ public class DriverAgent : Agent
             // Check if self is last trigger in path
             bool isLast = trigger == trigger.transform.parent.GetChild(trigger.transform.parent.childCount-1).gameObject;
             if(isLast)
-                EndEpisode();
+                FinishEpisode();
         }      
     }
 }
