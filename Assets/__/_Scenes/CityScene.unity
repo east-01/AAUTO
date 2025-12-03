@@ -326,22 +326,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2262865127303792664}
     m_Modifications:
-    - target: {fileID: 238747088591579060, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 238747088591579060, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_SensorName
-      value: SIDE_RIGHT
-      objectReference: {fileID: 0}
-    - target: {fileID: 574437851233573730, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 935203877579830250, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3239038700355613049, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: environment
       value: 
@@ -388,62 +372,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3399321270694016890, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3650495748957474390, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3650495748957474390, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_SensorName
-      value: FRONT_RIGHT
-      objectReference: {fileID: 0}
-    - target: {fileID: 5403094148279123919, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_SensorName
-      value: TOP
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_DetectableTags.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: 'm_DetectableTags.Array.data[1]'
-      value: Curb
-      objectReference: {fileID: 0}
-    - target: {fileID: 6526987087750906382, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6819263098171157275, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6819263098171157275, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_SensorName
-      value: SIDE_LEFT
-      objectReference: {fileID: 0}
-    - target: {fileID: 7344690966663931088, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7344690966663931088, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_SensorName
-      value: FRONT
-      objectReference: {fileID: 0}
-    - target: {fileID: 7739416423696656163, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7739416423696656163, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_SensorName
-      value: FRONT_LEFT
-      objectReference: {fileID: 0}
-    - target: {fileID: 8460983469140736322, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

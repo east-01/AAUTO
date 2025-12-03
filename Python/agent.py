@@ -81,6 +81,35 @@ class Agent_AAUTTO():
 		behavior_name = list(self.env.behavior_specs)[0]
 		spec = self.env.behavior_specs[behavior_name]
 
+		all_agent_tensors = []
+		
+		print("=" * 50)
+		print("SENSOR OBSERVATION")
+		print(f"Total Observations: {len(decision_steps.obs)}")
+
+		for i, obs in enumerate(decision_steps.obs):
+			arr = obs
+			print(f"\n--- Obs[{i}] ---")
+			print("Shape:", arr.shape)
+			print("Dtype:", arr.dtype)
+			try:
+				print("Min:", np.min(arr))
+				print("Max:", np.max(arr))
+			except:
+				pass
+
+			# Classify type
+			if len(arr.shape) == 4:
+				print("Type: Camera Sensor")
+			elif len(arr.shape) == 2:
+				if arr.shape[1] > 6:
+					print("Type: Ray Perception Sensor")
+				else:
+					print("Type: Vector")
+			else:
+				print("Type: Unrecognized observation")
+		print("=" * 50)
+
 		# How ChatGPT showed me to unpack it. We'll prolly have to figure out the right way to do
 		#   it once we understand our sensors better.		
 		n_agents = len(decision_steps)
