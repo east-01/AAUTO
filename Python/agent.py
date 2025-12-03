@@ -81,6 +81,33 @@ class Agent_AAUTTO():
 		behavior_name = list(self.env.behavior_specs)[0]
 		spec = self.env.behavior_specs[behavior_name]
 
+		all_agent_tensors = []
+		
+		print("=" * 50)
+		print("SENSOR OBSERVATION")
+		print(f"Total Observations: {len(decision_steps.obs)}")
+
+		for i, obs in enumerate(decision_steps.obs):
+			arr = obs
+			print(f"\n--- Obs[{i}] ---")
+			print("Shape:", arr.shape)
+			print("Dtype:", arr.dtype)
+			print("Min:", np.min(arr))
+			print("Max:", np.max(arr))
+
+
+			# Classify type
+			if len(arr.shape) == 4:
+				print("Type: Camera Sensor") # (1, RGB * Stacks, W, H)
+			elif len(arr.shape) == 2:
+				if np.min(arr) < 0 or np.max(arr) > 1:
+					print("Type: Behavior Parameters") # (1, SpaceSize * Stacks)
+				else:
+					print("Type: Ray Perception Sensor") # (1, ((RaysPerDirection * 2) + 1) * (NumDetectable + 2) * Stacks)
+			else:
+				print("Type: Unrecognized observation")
+		print("=" * 50)
+
 		# How ChatGPT showed me to unpack it. We'll prolly have to figure out the right way to do
 		#   it once we understand our sensors better.		
 		n_agents = len(decision_steps)
@@ -255,12 +282,23 @@ class Agent_AAUTTO():
 		# From env.reset() cell in tutorial
 		# https://docs.pytorch.org/docs/stable/generated/torch.permute.html
 		# https://docs.pytorch.org/docs/stable/generated/torch.unsqueeze.html
-		to_float = torch.from_numpy(observation).float()
-		to_zero_one = to_float / 255.0
+
 		# Doing .unsqueeze to add the batch_size dimension: [batch_size, channel, H, W]
-		tensor = to_zero_one.permute(2, 0, 1).unsqueeze(0)
+		obs_min = np.min(observation)
+		obs_max = np.max(observation)
+		if len(observation.shape) == 4: # Camera Tensor
+			tensor = torch.from_numpy(observation).float().to(self.device)
+			tensor = tensor.permute(2, 0, 1).unsqueeze(0) 
+		elif len(observation.shape) == 2: 
+			if obs_max <= 1.0 and obs_min >= 0.0: # Ray Perception Sensor
+				tensor = torch.from_numpy(observation).float().to(self.device).unsqueeze(0)
+			else: # Behavior Parameters
+				obs_norm = (observation - obs_min) / (obs_max - obs_min + 1e-8) # Normalize to [0,1]
+				tensor = torch.from_numpy(obs_norm).float().to(self.device).unsqueeze(0)
+		else:
+			tensor = torch.from_numpy(observation).float().to(self.device).unsqueeze(0)
 		
-		return tensor.to(self.device)
+		return tensor
 
 	def push_to_last_thirty(self, score):
 		""" Keep the last thirty scores, maintaining the averages list for the graph. """
