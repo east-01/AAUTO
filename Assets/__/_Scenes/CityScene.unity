@@ -436,6 +436,10 @@ PrefabInstance:
       propertyPath: 'm_DetectableTags.Array.data[1]'
       value: TrainingTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 4275812552857471962, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.3
+      objectReference: {fileID: 0}
     - target: {fileID: 4369699914526643900, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -459,6 +463,14 @@ PrefabInstance:
     - target: {fileID: 5099459535861579568, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5168114212114310688, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419544921865531832, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.1
       objectReference: {fileID: 0}
     - target: {fileID: 6183609880219837142, guid: 5c8dc3897c7598b44a81daf934a1ef21, type: 3}
       propertyPath: m_IsActive
