@@ -80,8 +80,8 @@ public class DriverAgent : Agent
         discreteActions[0] = boolAction;
         
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
-        continuousActions[0] = Input.GetAxis(HORIZONTAL);
-        continuousActions[1] = Input.GetAxis(VERTICAL);
+        continuousActions[0] = Input.GetAxis(VERTICAL);
+        continuousActions[1] = Input.GetAxis(HORIZONTAL);
     }
 #endregion
 
