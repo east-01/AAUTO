@@ -80,6 +80,7 @@ class Agent_AAUTTO():
 
 		behavior_name = list(self.env.behavior_specs)[0]
 		spec = self.env.behavior_specs[behavior_name]
+		action_spec = spec.action_spec
 
 		all_agent_tensors = []
 		
@@ -119,11 +120,20 @@ class Agent_AAUTTO():
 			for obs in obs_per_agent:
 				print("Observed:", obs)
 
-		n_agents = len(decision_steps)
-		action_size = spec.action_spec.continuous_size
+		# --- Continuous: [forward, turn] ---
+		acts_cont = np.random.uniform(
+			-1.0, 1.0,
+			size=(n_agents, action_spec.continuous_size),
+		).astype(np.float32)
 
-		acts_cont = np.random.uniform(-1, 1, size=(n_agents, action_size))
-		acts_disc = np.array([[0]])
+		# --- Discrete: [brake flag] in {0, 1} ---
+		# Branch 0 size is 2, so valid actions 0 or 1
+		acts_disc = np.random.randint(
+			0,
+			action_spec.discrete_branches[0],
+			size=(n_agents, action_spec.discrete_size),
+			dtype=np.int32,
+		)
 	
 		return ActionTuple(continuous=acts_cont, discrete=acts_disc)
 #endregion
@@ -177,7 +187,7 @@ class Agent_AAUTTO():
 			decision_steps, terminal_steps = env.get_steps(behavior_name)
 
 			action_tuple = self.make_action(decision_steps, test=False)
-			env.set_actions(action_tuple)
+			env.set_actions(behavior_name, action_tuple)
 
 			# self.run_grad_desc()
 
