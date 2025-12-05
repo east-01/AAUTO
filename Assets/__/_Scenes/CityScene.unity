@@ -374,14 +374,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6064783382073908349, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: 'm_DetectableTags.Array.data[1]'
-      value: Environment
-      objectReference: {fileID: 0}
-    - target: {fileID: 7345670725525283500, guid: ccf3704f79a1ef248b051042abe798a2, type: 3}
-      propertyPath: useKeyboardInput
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

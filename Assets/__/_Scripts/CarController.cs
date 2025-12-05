@@ -6,10 +6,12 @@ using TMPro;
 
 public class CarController : MonoBehaviour
 {
+    public float NormalizedSpeed => currentCarSpeedMPH / maxSpeedMPH;
+    public float NormalizedSteer => currentSteerAngle / maxSteeringAngle;
 
     private float horizontalInput;
     private float verticalInput;
-    private bool isBreaking;
+    private float breakingInput;
     private float currentBreakForce;
     private float currentSteerAngle;
     private float currentThrottle = 0f;
@@ -74,19 +76,19 @@ public class CarController : MonoBehaviour
     }
 
     // Set Inputs for either Keyboard or Agent
-    public void SetInput(float vertical, float horizontal, bool breaking)
+    public void SetInput(float vertical, float horizontal, float breaking)
     {
         verticalInput = vertical;
         horizontalInput = horizontal;
-        isBreaking = breaking;
+        breakingInput = breaking;
     }
-    
+
     // For Motion Testing
     private void GetKeyboardInput()
     {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-        isBreaking = Input.GetKey(KeyCode.Space);
+        breakingInput = Input.GetKey(KeyCode.Space) ? 1f : 0f;
     }
 
     // Display Speed in MPH
@@ -131,7 +133,8 @@ public class CarController : MonoBehaviour
     // Handle Braking
     private void HandleBreaking()
     {
-        currentBreakForce = isBreaking ? breakForce : 0f;
+        //currentBreakForce = isBreaking ? breakForce : 0f;
+        currentBreakForce = breakingInput * breakForce;
 
         foreach (WheelCollider wheel in FrontWheelColliders)
         {

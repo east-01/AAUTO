@@ -23,10 +23,12 @@ public class DriverAgent : Agent
     /// Directions string to be used by model
     /// </summary>
     private string _directions;
+    private Rigidbody _rb;
 
     private void Awake()
     {
         _carController = GetComponent<CarController>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private TrainingPath selectedPath;
@@ -51,7 +53,10 @@ public class DriverAgent : Agent
     // REQUIRES: Behavior Parameters -> Vector Observation -> Space Size = # of observations fed to agent
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(transform.position); //counts as 3 observations (x,y,z)
+        //sensor.AddObservation(transform.position); //counts as 3 observations (x,y,z)
+        sensor.AddObservation(transform.InverseTransformDirection(_rb.linearVelocity)); // 3 observations, (local x,y,z velocity)
+        sensor.AddObservation(_carController.NormalizedSpeed); // 1 observation, values 0 to 1
+        sensor.AddObservation(_carController.NormalizedSteer); // 1 observation, values -1 to 1
     }
     
     // Actions agent can do
@@ -62,26 +67,29 @@ public class DriverAgent : Agent
         float reward = -0.1f;
         AddReward(reward);
 
-        float forwardAmount = Mathf.Clamp(actionBuffers.ContinuousActions[0], -1f, 1f);
+        float forwardAmount = Mathf.Clamp(actionBuffers.ContinuousActions[0], 0f, 1f);
         float turnAmount = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
-        bool breakAmount = actionBuffers.DiscreteActions[0] == 1;
-        
+        float breakAmount = Mathf.Clamp(actionBuffers.ContinuousActions[2], 0f, 1f);
+        //bool breakAmount = actionBuffers.DiscreteActions[0] == 1;
+
         _carController.SetInput(forwardAmount, turnAmount, breakAmount);
     }
 
     //Used for testing
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        bool isBreaking = Input.GetKey(KeyCode.Space);
-        int boolAction = 0;
-        if(isBreaking) boolAction = 1;
-        
-        ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
-        discreteActions[0] = boolAction;
-        
+        //bool isBreaking = Input.GetKey(KeyCode.Space);
+        //int boolAction = 0;
+        //if(isBreaking) boolAction = 1;
+
+        //ActionSegment<int> discreteActions = actionsOut.DiscreteActions;
+        //discreteActions[0] = boolAction;
+        float breakInput = Input.GetKey(KeyCode.Space) ? 1f : 0f;
+
         ActionSegment<float> continuousActions = actionsOut.ContinuousActions;
         continuousActions[0] = Input.GetAxis(VERTICAL);
         continuousActions[1] = Input.GetAxis(HORIZONTAL);
+        continuousActions[2] = breakInput;
     }
 #endregion
 
