@@ -1,35 +1,36 @@
 import numpy as np
 
-class ReplayBuffer:
-    def __init__(self, max_size, state_dim, action_dim):
-        self.max_size = max_size
-        self.ptr = 0
-        self.size = 0
+class ReplayBuffer():
+    def __init__(self, max_size, input_shape, n_actions):
+        self.mem_size = max_size
+        self.mem_cntr = 0
+        self.state_memory = np.zeros((self.mem_size, *input_shape))
+        self.new_state_memory = np.zeros((self.mem_size, *input_shape))
+        self.action_memory = np.zeros((self.mem_size, n_actions))
+        self.reward_memory = np.zeros(self.mem_size)
+        self.terminal_memory = np.zeros(self.mem_size, dtype=np.bool)
 
-        self.state_buffer = np.zeros((max_size, state_dim))
-        self.action_buffer = np.zeros((max_size, action_dim))
-        self.reward_buffer = np.zeros((max_size, 1))
-        self.next_state_buffer = np.zeros((max_size, state_dim))
-        self.done_buffer = np.zeros((max_size, 1))
+    def store_transition(self, state, action, reward, state_, done):
+        index = self.mem_cntr % self.mem_size
 
-    def add(self, state, action, reward, next_state, done):
-        self.state_buffer[self.ptr] = state
-        self.action_buffer[self.ptr] = action
-        self.reward_buffer[self.ptr] = reward
-        self.next_state_buffer[self.ptr] = next_state
-        self.done_buffer[self.ptr] = done
+        self.state_memory[index] = state
+        self.new_state_memory[index] = state_
+        self.action_memory[index] = action
+        self.reward_memory[index] = reward
+        self.terminal_memory[index] = done
 
-        self.ptr = (self.ptr + 1) % self.max_size
-        self.size = min(self.size + 1, self.max_size)
+        self.mem_cntr += 1
 
-    def sample(self, batch_size):
-        max_mem = min(self.size, self.max_size)
-        batch_indices = np.random.choice(max_mem, batch_size)
-        
-        states = self.state_buffer[batch_indices]
-        actions = self.action_buffer[batch_indices]
-        rewards = self.reward_buffer[batch_indices]
-        next_states = self.next_state_buffer[batch_indices]
-        dones = self.done_buffer[batch_indices]
-        
-        return states, actions, rewards, next_states, dones
+    def sample_buffer(self, batch_size):
+        max_mem = min(self.mem_cntr, self.mem_size)
+
+        batch = np.random.choice(max_mem, batch_size)
+
+        states = self.state_memory[batch]
+        states_ = self.new_state_memory[batch]
+        actions = self.action_memory[batch]
+        rewards = self.reward_memory[batch]
+        dones = self.terminal_memory[batch]
+
+        return states, actions, rewards, states_, dones
+
