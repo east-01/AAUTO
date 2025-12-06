@@ -5,6 +5,7 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
+using Unity.VisualScripting;
 
 
 public class DriverAgent : Agent
@@ -39,6 +40,8 @@ public class DriverAgent : Agent
         selectedPath = environment.Initialize(this);
         _directions = selectedPath.TravelInstructions;
 
+        lastSeenProgress = 0;
+
         Debug.Log($"Picked path \"{selectedPath.gameObject.name}\" with directions: \"{_directions}\"");
     }
 
@@ -58,6 +61,9 @@ public class DriverAgent : Agent
         sensor.AddObservation(_carController.NormalizedSteer); // 1 observation, values -1 to 1
     }
     
+    private float accTimeReward = 0f;
+    private float accProgReward = 0f;
+    private int lastStepNum;
     private float lastSeenProgress;
     // Actions agent can do
     // REQUIRES: Behavior Parameters -> Actions -> Discrete/Continuous nch = # Discrete/Continuous actions
@@ -69,16 +75,38 @@ public class DriverAgent : Agent
         float breakAmount = Mathf.Clamp(actionBuffers.ContinuousActions[2], 0f, 1f);
         //bool breakAmount = actionBuffers.DiscreteActions[0] == 1;
 
-        // Persistent negative reward over time
-        float timeReward = -0.01f;
-        AddReward(timeReward);
+        // Extremely small persistent negative reward to promote forward progress
+        // Time reward turned off since we're using progress reward
+        // float timeReward = -0.0001f;
+        // AddReward(timeReward);
 
         Vector3 startPos = selectedPath.transform.GetChild(0).position;
         Vector3 endPos = selectedPath.transform.GetChild(selectedPath.transform.childCount - 1).position;
         float progress = GetLineProgress(transform.position, startPos, endPos);
         float progressDelta = progress - lastSeenProgress;
-        AddReward(progressDelta * 2f);
+        float progressReward;
+        if(progressDelta > 0f) {
+            float forwardWeight = 1.5f;
+            progressReward = progressDelta * forwardWeight;
+        } else {            
+            float backwardWeight = 3f;
+            progressReward = progressDelta * backwardWeight;
+        }
+
+        AddReward(progressReward);
         lastSeenProgress = progress;
+
+        // accTimeReward += timeReward;
+        // accProgReward += progressReward;
+        // if(StepCount - lastStepNum >= 100) {
+        //     Debug.Log($"Accumulated time reward: {accTimeReward}");
+        //     Debug.Log($"Accumulated progress reward: {accProgReward}");
+        //     lastStepNum = StepCount;
+        //     accTimeReward = 0f;
+        //     accProgReward = 0f;
+        // }
+
+        // Debug.Log($"Progress reward: {progressReward}");
 
         _carController.SetInput(forwardAmount, turnAmount, breakAmount);
     }
