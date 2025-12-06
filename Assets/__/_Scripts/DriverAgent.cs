@@ -44,7 +44,6 @@ public class DriverAgent : Agent
 
     private void FinishEpisode()
     {
-        // selectedPath.DeInitialize();
         EndEpisode();        
     }
 
@@ -59,18 +58,27 @@ public class DriverAgent : Agent
         sensor.AddObservation(_carController.NormalizedSteer); // 1 observation, values -1 to 1
     }
     
+    private float lastSeenProgress;
     // Actions agent can do
     // REQUIRES: Behavior Parameters -> Actions -> Discrete/Continuous nch = # Discrete/Continuous actions
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        // Persistent negative reward over time
-        float reward = -0.1f;
-        AddReward(reward);
-
+        // NOTE: Reversing is forbidden- change lower bound of clamp to -1 for reverse
         float forwardAmount = Mathf.Clamp(actionBuffers.ContinuousActions[0], 0f, 1f);
         float turnAmount = Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
         float breakAmount = Mathf.Clamp(actionBuffers.ContinuousActions[2], 0f, 1f);
         //bool breakAmount = actionBuffers.DiscreteActions[0] == 1;
+
+        // Persistent negative reward over time
+        float timeReward = -0.01f;
+        AddReward(timeReward);
+
+        Vector3 startPos = selectedPath.transform.GetChild(0).position;
+        Vector3 endPos = selectedPath.transform.GetChild(selectedPath.transform.childCount - 1).position;
+        float progress = GetLineProgress(transform.position, startPos, endPos);
+        float progressDelta = progress - lastSeenProgress;
+        AddReward(progressDelta * 2f);
+        lastSeenProgress = progress;
 
         _carController.SetInput(forwardAmount, turnAmount, breakAmount);
     }
@@ -119,5 +127,18 @@ public class DriverAgent : Agent
             if(isLast)
                 FinishEpisode();
         }      
+    }
+
+    public float GetLineProgress(Vector3 position, Vector3 lineStart, Vector3 lineEnd)
+    {
+        Vector3 lineDirection = lineEnd - lineStart;
+        float lineMagnitude = lineDirection.magnitude;
+        Vector3 lineNormalized = lineDirection / lineMagnitude;
+
+        Vector3 pointLineStart = transform.position - lineStart;
+        float dotProduct = Vector3.Dot(pointLineStart, lineNormalized);
+
+        dotProduct = Mathf.Clamp(dotProduct, 0f, lineMagnitude);
+        return dotProduct/lineMagnitude;
     }
 }
