@@ -4,7 +4,7 @@ behaviors:
 
     hyperparameters:
       learning_rate: 0.0003        # matches PPO
-      batch_size: 1024             # same as PPO
+      batch_size: 512             # same as PPO
       buffer_size: 10240           # same as PPO
       tau: 0.005                   # SAC default (polyak)
       steps_per_update: 1          # SAC default
