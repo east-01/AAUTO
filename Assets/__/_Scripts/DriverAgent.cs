@@ -47,10 +47,17 @@ public class DriverAgent : Agent
 
     private void FinishEpisode()
     {
+        float episodeReward = GetCumulativeReward();
+        EpisodeLogger.LogEpisode(episodeReward);
         EndEpisode();        
     }
 
-#region Data In/Out
+    private void OnApplicationQuit()
+    {
+        EpisodeLogger.Close();
+    }
+
+    #region Data In/Out
     // Information fed to the agent
     // REQUIRES: Behavior Parameters -> Vector Observation -> Space Size = # of observations fed to agent
     public override void CollectObservations(VectorSensor sensor)
