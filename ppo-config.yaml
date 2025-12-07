@@ -1,0 +1,50 @@
+behaviors:
+  CarController:
+    trainer_type: ppo
+
+    hyperparameters:
+      batch_size: 1024
+      buffer_size: 10240
+      learning_rate: 0.0003
+      beta: 0.005
+      epsilon: 0.2
+      lambd: 0.95
+      num_epoch: 3
+      shared_critic: false
+      learning_rate_schedule: linear
+      beta_schedule: linear
+      epsilon_schedule: linear
+
+    network_settings:
+      normalize: false
+      hidden_units: 128
+      num_layers: 2
+      vis_encode_type: simple
+      # memory is "None" in your printout -> just omit if unused
+      # goal_conditioning_type: hyper   # only include if you're really using goal conditioning
+      deterministic: false
+
+    reward_signals:
+      extrinsic:
+        gamma: 0.99
+        strength: 1.0
+        network_settings:
+          normalize: false
+          hidden_units: 128
+          num_layers: 2
+          vis_encode_type: simple
+          # memory: None
+          # goal_conditioning_type: hyper
+          deterministic: false
+
+    # Optional: if you don’t have an initial model, omit or keep as null
+    # init_path: null
+
+    keep_checkpoints: 5
+    even_checkpoints: false
+    max_steps: 500000
+    time_horizon: 64
+    summary_freq: 50000
+    threaded: false
+    # self_play: null
+    # behavioral_cloning: null
