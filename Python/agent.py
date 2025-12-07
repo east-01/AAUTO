@@ -199,10 +199,12 @@ class Agent_AAUTTO():
 	
 	def increment_step(self):
 		if(self.step_number % self.args.checkpoint_long_steps == 0 and self.step_number != 0):
-			save_model_data(agent=self, tag=self.step_number)
+			# save_model_data(agent=self, tag=self.step_number)
+			pass
 
 		if(self.step_number % self.args.checkpoint_short_steps == 0 and self.step_number != 0):
-			save_model_data(agent=self, tag="latest")
+			# save_model_data(agent=self, tag="latest")
+			pass
 
 		self.step_number += 1
 #endregion
