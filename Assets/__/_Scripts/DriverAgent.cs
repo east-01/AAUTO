@@ -116,6 +116,11 @@ public class DriverAgent : Agent
         // Debug.Log($"Progress reward: {progressReward}");
 
         _carController.SetInput(forwardAmount, turnAmount, breakAmount);
+
+        if (StepCount >= MaxStep && MaxStep > 0)
+        {
+            FinishEpisode();
+        }
     }
 
     //Used for testing
