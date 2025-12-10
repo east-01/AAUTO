@@ -1,0 +1,26 @@
+name: mlagents-env
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10.12
+  - numpy>=1.24.0,<2.0
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+  - tensorboard
+  - onnx
+  - onnxruntime
+  - gymnasium
+  - matplotlib
+  - tqdm
+  - pip
+  - pip:
+      - mlagents==1.1.0
+      - mlagents_envs==1.1.0
+      - protobuf>=3.20,<4.0
+      - typing_extensions

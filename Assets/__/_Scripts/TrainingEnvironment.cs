@@ -14,13 +14,14 @@ public class TrainingEnvironment : MonoBehaviour
     /// <returns></returns>
     public TrainingPath Initialize(DriverAgent agent) 
     {
+        // Deactivate all paths
+        pathOptions.ForEach(pathOption => pathOption.gameObject.SetActive(false));
 
         // Pick path from random options
         TrainingPath selectedPath = pathOptions[Random.Range(0, pathOptions.Count)];
 
         // Set path to active
         selectedPath.gameObject.SetActive(true);
-
         selectedPath.Initialize();
 
         // Set car to start of path

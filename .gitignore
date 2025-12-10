@@ -2,6 +2,9 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=unity
 
 ml-agents
+Assets/ML-Agents/Timers/*
+Python/venv
+results
 
 ### Unity ###
 # This .gitignore file should be placed at the root of your Unity project directory
@@ -46,6 +49,7 @@ ExportedObj/
 *.csproj
 *.unityproj
 *.sln
+*.slnx
 *.suo
 *.tmp
 *.user
@@ -83,3 +87,4 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # End of https://www.toptal.com/developers/gitignore/api/unity
+.ipynb_checkpoints/
